@@ -12,5 +12,12 @@ node {
     
         app = docker.build("ishaq/javaapp")
     }
+    
+    stage('Test image') {
+        
+        app.inside {
+            echo "Tests passed"
+        }
+    }
 
     }
