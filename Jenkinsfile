@@ -20,10 +20,5 @@ node {
         }
     }
      
-    stage("docker push") {
-    docker.withRegistry('https://gcr.io', "gcr:credential-id") {
-        Img.push("imageTag")
-    }
-}
 
     }
