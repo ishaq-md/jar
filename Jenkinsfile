@@ -20,12 +20,11 @@ node {
         }
     }
     
-    stage('Push Image') {
-docker.withRegistry('https://gcr.io', 'gcr:ishaqgcpproject') {
-    app.push("${commit_id}")
-    app.push("latest")
-}
-    
+    stage('Push images') {
+        docker.withRegistry('https://gcr.io', 'gcr:google-container-registry-project') {
+            myContainer.push("${env.BUILD_NUMBER}")
+            myContainer.push("latest")
+        }
     }
 
     }
