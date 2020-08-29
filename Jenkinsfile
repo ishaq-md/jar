@@ -10,7 +10,7 @@ node {
     stage('Build image') {
         /* Below command specifies exactly like the command line */
     
-        app = docker.build("ishaq/javaapp")
+        app = docker.build("ishaqmd/javaapp")
     }
     
     stage('Test image') {
