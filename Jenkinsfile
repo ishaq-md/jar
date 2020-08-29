@@ -1,23 +1,22 @@
-node {
-    def app
-
-    stage('Clone repository') {
-        /* Clone the repository to our Jenkins Workspace */
-
-        checkout scm
-    }
-
-    stage('Build image') {
-        /* Below command specifies exactly like the command line */
-    
-        app = docker.build("ishaqmd/javaapps")
-    }
-    
-    stage('Test image') {
-        
-        app.inside {
-            sh 'echo "Tests passed"'
+pipeline {
+   agent any
+  stages {
+      
+     stage('Run gcloud version') {
+        steps {
+           sh 'gcloud --version'
         }
-    }
-    
-    }
+     }
+      
+     stage('compute VM create') {
+        steps {
+           sh 'gcloud compute instances create gcloud'
+        }
+     }
+     stage('List computes') {
+        steps {
+           sh 'gcloud compute instances list'
+        }
+     }
+  }
+}
