@@ -20,13 +20,12 @@ node {
         }
     }
     
-    stage('Push image') {
-       
-        steps {
-           sh docker tag ishaqmd/javapp gcr.io/ishaqgcpproject/javaapp
-        }
-     }
+    stage('Push Image') {
+docker.withRegistry('https://gcr.io', 'gcr:ishaqgcpproject') {
+    app.push("${commit_id}")
+    app.push("latest")
+}
     
-     
+    }
 
     }
