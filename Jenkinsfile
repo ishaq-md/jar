@@ -10,7 +10,7 @@ node {
     stage('Build image') {
         /* Below command specifies exactly like the command line */
     
-        app = docker.build("ishaqmd/javaapp")
+        app = docker.build("ishaqmd/javaapps")
     }
     
     stage('Test image') {
@@ -20,11 +20,4 @@ node {
         }
     }
     
-    stage('Push images') {
-        docker.withRegistry('https://gcr.io', 'gcr:google-container-registry-project') {
-            myContainer.push("${env.BUILD_NUMBER}")
-            myContainer.push("latest")
-        }
-    }
-
     }
