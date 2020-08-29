@@ -21,7 +21,7 @@ node {
     }
     
     stage('Push images') {
-        docker.withRegistry('https://gcr.io', 'gcr:ishaqgcpproject') {
+        docker.withRegistry('https://gcr.io', 'gcr:google-container-registry-project') {
             myContainer.push("${env.BUILD_NUMBER}")
             myContainer.push("latest")
         }
