@@ -48,7 +48,7 @@ pipeline {
 	 }
 	 
 	 
-	stage('Build image') {
+	stage('Create GKE cluster') {
 	 steps {
         /* Below command specifies exactly like the command line */
     
