@@ -79,7 +79,7 @@ pipeline {
 			 {
         /* Below command specifies exactly like the command line */
     
-        sh 'kubectl apply -f deployment.yml'
+        sh 'kubectl apply -f deployment.yaml'
 	
     }
     }
