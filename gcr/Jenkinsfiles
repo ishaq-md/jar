@@ -46,7 +46,7 @@ pipeline {
 			 }
 		 }
 	 }
-	 }
+	 
 	 
 	stage('Build image') {
 	 steps {
@@ -55,5 +55,5 @@ pipeline {
         sh 'gcloud container clusters create sample-cluster --zone us-central1-a --num-nodes=1'
     }
     }
-   
+   }
 }
