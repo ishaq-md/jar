@@ -41,33 +41,27 @@ pipeline {
     }
     }
         
-        /* stage('Push Image to GCR') {
+        stage('Push Image to GCR') {
 		 steps {  
 			  dir('gcr')
 			 {
         sh 'gcloud auth activate-service-account nasa7733@nasalab-316914.iam.gserviceaccount.com --key-file=terraform.json'
 	sh 'gcloud auth configure-docker'
-        /* Finally, we'll push the image with two tags:
-         * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag.
-         * Pushing multiple tags is cheap, as all the layers are reused. */
         sh 'docker push gcr.io/nasalab-316914/javaapp1'
 			 }
 		 }
 	 }
-	 */
 	 
-	stage('Create GKE cluster') {
+	 
+	/*stage('Create GKE cluster') {
 	 steps {
-        /* Below command specifies exactly like the command line */
     
         sh 'gcloud container clusters create samples-cluster --zone us-central1-a --num-nodes=1'
     }
-    }
+    }*/
     
     stage('Get creds from GKE cluster') {
 	 steps {
-        /* Below command specifies exactly like the command line */
     
         sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project nasalab-316914'
     }
