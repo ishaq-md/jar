@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    
+    environment {
+    SVC_ACCOUNT_KEY = credentials('GCR_IO')
+  }
+     
+    stages {
+        stage ('checkout'){
+            steps {
+                git branch: 'master', url: 'https://github.com/ishaqmdgcp/jar.git'
+            }
+        }
+      
+      
+		stage('Set creds') {
+            steps {
+              
+                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./gcr/terraform.json'
+		            sh 'pwd'
+                       
+               
+            }
+        }
+	
+	        
+        stage('Push Image to GCR') {
+		 steps {  
+			  dir('gcr')
+			 {
+        sh 'gcloud auth activate-service-account nasa7733@nasalab-316914.iam.gserviceaccount.com --key-file=terraform.json'
+				 }
+		 }
+	 }
+	 
+	 
+	stage('Create GKE cluster') {
+	 steps {
+    
+        sh 'gcloud container clusters delete samples-cluster --zone us-central1-a
+    }
+    }
+    
+       
+    
+   }
+}
