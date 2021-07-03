@@ -41,7 +41,7 @@ pipeline {
     }
     }
         
-         stage('Push Image to GCR') {
+        /* stage('Push Image to GCR') {
 		 steps {  
 			  dir('gcr')
 			 {
@@ -55,7 +55,7 @@ pipeline {
 			 }
 		 }
 	 }
-	 
+	 */
 	 
 	stage('Create GKE cluster') {
 	 steps {
