@@ -78,5 +78,14 @@ pipeline {
     }
     }
     }
+    
+    stage('Test App Deploy') {
+	 steps {
+    
+        sh 'curl localhost:8080/hello'
+	
+    
+    }
+    }
    }
 }
