@@ -26,7 +26,7 @@ node {
     
     stage('Push image to gcr') {
         
-        sh 'echo $SVC_ACCOUNT_KEY ./jenkins.json'
+        sh 'echo $SVC_ACCOUNT_KEY ./gcr_jenkins/jenkins.json'
         sh 'pwd'
         sh 'gcloud auth activate-service-account nasa7733@nasalab-316914.iam.gserviceaccount.com --key-file=jenkins.json'
         /* Finally, we'll push the image with two tags:
