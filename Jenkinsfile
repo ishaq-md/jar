@@ -20,7 +20,7 @@ node {
         }
     }
     
-    stage('Push image') {
+    stage('Push image to docker-hub') {
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
@@ -30,6 +30,16 @@ node {
             app.push("latest")
         }
     }
-     
+    
+     stage('Docker Build and Tag') {
+           steps {
+                
 
+                sh 'docker tag ishaqmd/javaapp gcr.io/nasalab-316914/javaapp'
+               sh 'docker push gcr.io/nasalab-316914/javaapp'
+                //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
+               
+          }
+        }
+     
     }
