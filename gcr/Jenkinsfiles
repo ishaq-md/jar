@@ -72,10 +72,13 @@ pipeline {
     
     stage('App Deploy') {
 	 steps {
+	 dir('gcr')
+			 {
         /* Below command specifies exactly like the command line */
     
         sh 'kubectl apply -f deployment.yml'
 	
+    }
     }
     }
    }
