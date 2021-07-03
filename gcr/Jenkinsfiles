@@ -47,9 +47,13 @@ pipeline {
 		 }
 	 }
 	 }
-	 stage('Create GKE cluster') {
-		 steps {  
-	sh 'gcloud container clusters create sample-cluster --zone us-central1-a --num-nodes=1'
-	 }
-}
+	 
+	stage('Build image') {
+	 steps {
+        /* Below command specifies exactly like the command line */
+    
+        sh 'gcloud container clusters create sample-cluster --zone us-central1-a --num-nodes=1'
+    }
+    }
+   
 }
