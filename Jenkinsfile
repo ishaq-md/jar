@@ -31,15 +31,6 @@ node {
         }
     }
     
-     stage('Docker push gcr') {
-           steps {
-                
-
-               sh 'docker tag ishaqmd/javaapp:latest gcr.io/nasalab-316914/javaapp1'
-               sh 'docker push gcr.io/nasalab-316914/javaapp1'
-                
-               
-          }
-        }
+     
      
     }
