@@ -29,7 +29,7 @@ node {
         dir('gcr')
         {
         
-        sh 'sudo echo $SVC_ACCOUNT_KEY | base64 -d > ./gcr/jen.json'
+        sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./jen.json'
         sh 'pwd'
         sh 'gcloud auth activate-service-account nasa7733@nasalab-316914.iam.gserviceaccount.com --key-file=jen.json'
         /* Finally, we'll push the image with two tags:
