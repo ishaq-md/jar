@@ -31,13 +31,13 @@ node {
         }
     }
     
-     stage('Docker Build and Tag') {
+     stage('Docker push gcr') {
            steps {
                 
 
-                sh 'docker tag ishaqmd/javaapp gcr.io/nasalab-316914/javaapp'
-               sh 'docker push gcr.io/nasalab-316914/javaapp'
-                //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
+               sh 'docker tag ishaqmd/javaapp:latest gcr.io/nasalab-316914/javaapp1'
+               sh 'docker push gcr.io/nasalab-316914/javaapp1'
+                
                
           }
         }
