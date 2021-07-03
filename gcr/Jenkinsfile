@@ -2,7 +2,7 @@ node {
     def app
 
     environment {
-    SVC_ACCOUNT_KEY = credentials('GC_KEY')
+    SVC_ACCOUNT_KEY = credentials('GCR_IO')
   }
     
     stage('Clone repository') {
