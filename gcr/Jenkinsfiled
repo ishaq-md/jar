@@ -37,7 +37,7 @@ pipeline {
 	stage('Create GKE cluster') {
 	 steps {
     
-        sh 'gcloud container clusters delete samples-cluster --zone us-central1-a
+        sh 'gcloud container clusters delete samples-cluster --zone us-central1-a'
     }
     }
     
