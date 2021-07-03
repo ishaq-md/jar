@@ -13,6 +13,12 @@ pipeline {
             }
         }
       
+      stage('Execute Maven') {
+           steps {
+             
+                sh 'mvn package'             
+          }
+        }
 
 		stage('Set creds') {
             steps {
@@ -53,6 +59,23 @@ pipeline {
         /* Below command specifies exactly like the command line */
     
         sh 'gcloud container clusters create sample-cluster --zone us-central1-a --num-nodes=1'
+    }
+    }
+    
+    stage('Get creds from GKE cluster') {
+	 steps {
+        /* Below command specifies exactly like the command line */
+    
+        sh 'gcloud container clusters get-credentials sample-cluster --zone us-central1-a --project nasalab-316914'
+    }
+    }
+    
+    stage('App Deploy') {
+	 steps {
+        /* Below command specifies exactly like the command line */
+    
+        sh 'kubectl apply -f deployment.yml'
+	
     }
     }
    }
