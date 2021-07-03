@@ -25,9 +25,11 @@ pipeline {
         }
 	
 	stage('Build image') {
+	 steps {
         /* Below command specifies exactly like the command line */
     
         sh 'docker build -t gcr.io/nasalab-316914/javaapp2 .'
+    }
     }
         
          stage('Push Image to GCR') {
