@@ -26,7 +26,10 @@ node {
     
     stage('Push image to gcr') {
         
-        sh 'sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./gcr/jenkins.json'
+        dir('gcr')
+        {
+        
+        sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./gcr/jenkins.json'
         sh 'pwd'
         sh 'gcloud auth activate-service-account nasa7733@nasalab-316914.iam.gserviceaccount.com --key-file=jenkins.json'
         /* Finally, we'll push the image with two tags:
@@ -34,6 +37,7 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         sh 'docker push gcr.io/nasalab-316914/javaapp1'
+    }
     }
     
      
