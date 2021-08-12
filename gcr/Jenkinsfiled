@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-    SVC_ACCOUNT_KEY = credentials('GCR_IO')
+    SVC_ACCOUNT_KEY = credentials('terraform-auth')
   }
      
     stages {
@@ -28,7 +28,7 @@ pipeline {
 		 steps {  
 			  dir('gcr')
 			 {
-        sh 'gcloud auth activate-service-account nasa7733@nasalab-316914.iam.gserviceaccount.com --key-file=terraform.json'
+        sh 'gcloud auth activate-service-account jenkins@midevlab.iam.gserviceaccount.com --key-file=terraform.json'
 				 }
 		 }
 	 }
