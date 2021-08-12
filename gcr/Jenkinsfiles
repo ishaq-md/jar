@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-    SVC_ACCOUNT_KEY = credentials('GCR_IO')
+    SVC_ACCOUNT_KEY = credentials('terraform-auth')
   }
      
     stages {
@@ -37,7 +37,7 @@ pipeline {
 	 steps {
         /* Below command specifies exactly like the command line */
     
-        sh 'docker build -t gcr.io/nasalab-316914/javaapp2 .'
+        sh 'docker build -t gcr.io/midevlab/javaapp2 .'
     }
     }
         
@@ -45,9 +45,9 @@ pipeline {
 		 steps {  
 			  dir('gcr')
 			 {
-        sh 'gcloud auth activate-service-account nasa7733@nasalab-316914.iam.gserviceaccount.com --key-file=terraform.json'
+        sh 'gcloud auth activate-service-account jenkins@midevlab.iam.gserviceaccount.com --key-file=terraform.json'
 	sh 'gcloud auth configure-docker'
-        sh 'docker push gcr.io/nasalab-316914/javaapp1'
+        sh 'docker push gcr.io/midevlab/javaapp1'
 			 }
 		 }
 	 }
@@ -83,7 +83,7 @@ pipeline {
     stage('Test App Deploy') {
 	 steps {
     
-        sh 'http://35.194.40.82:8080/hello'
+        sh 'http://34.145.24.49/:8080/hello'
 	
     
     }
