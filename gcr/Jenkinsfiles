@@ -47,7 +47,7 @@ pipeline {
 			 {
         sh 'gcloud auth activate-service-account jenkins@midevlab.iam.gserviceaccount.com --key-file=terraform.json'
 	sh 'gcloud auth configure-docker'
-        sh 'docker push gcr.io/midevlab/javaapp1'
+        sh 'docker push gcr.io/midevlab/javaapp2'
 			 }
 		 }
 	 }
