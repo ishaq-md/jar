@@ -83,7 +83,7 @@ pipeline {
     stage('Test App Deploy') {
 	 steps {
     
-        sh 'http://34.145.24.49:8080/hello'
+        sh 'http://34.134.206.27:8080/mi'
 	
     
     }
