@@ -63,7 +63,7 @@ pipeline {
     stage('Get creds from GKE cluster') {
 	 steps {
     
-        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project nasalab-316914'
+        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project midevlab'
     }
     }
     
