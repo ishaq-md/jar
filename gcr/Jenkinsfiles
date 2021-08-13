@@ -83,7 +83,7 @@ pipeline {
     stage('Test App Deploy') {
 	 steps {
     
-        sh 'curl http://34.134.206.27:8080/health'
+        sh 'curl http://35.188.97.104:8080/health'
 	
     
     }
