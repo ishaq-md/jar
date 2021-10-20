@@ -81,13 +81,13 @@ pipeline {
     }
     }
     
-   // stage('Test App Deploy') {
-	// steps {
+    stage('Test App Deploy') {
+	 steps {
     
-        //sh 'curl http://35.188.97.104:8080/health'
+        sh 'curl http://35.225.234.219:8080/health'
 	
     
-   // }
-    //}
+    }
+    }
    }
 }
