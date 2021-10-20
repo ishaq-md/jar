@@ -1,7 +1,7 @@
 pipeline {
     agent any
     
-    stages
+    stages {
     stage('Get creds from GKE cluster') {
 	 steps {
     
@@ -41,7 +41,7 @@ pipeline {
     
         sh 'curl http://35.225.234.219:8080/health'
 	
-    
+    }
     
     }
    }
