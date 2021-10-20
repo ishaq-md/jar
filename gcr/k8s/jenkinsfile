@@ -42,7 +42,7 @@ pipeline {
         sh 'curl http://35.225.234.219:8080/health'
 	
     
-    }
+    
     }
    }
 }
