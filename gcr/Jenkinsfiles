@@ -37,7 +37,7 @@ pipeline {
 	 steps {
         /* Below command specifies exactly like the command line */
     
-        sh 'docker build -t gcr.io/midevlab/javaapp2 .'
+        sh 'docker build -t gcr.io/midevops/javaapp2 .'
     }
     }
         
@@ -45,6 +45,7 @@ pipeline {
 		 steps {  
 			  dir('gcr')
 			 {
+			 sh 'pwd'
         sh 'gcloud auth activate-service-account terraform@midevops.iam.gserviceaccount.com --key-file=terraform.json'
 	sh 'gcloud auth configure-docker'
         sh 'docker push gcr.io/midevops/javaapp2'
