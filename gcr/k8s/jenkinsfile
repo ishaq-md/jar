@@ -1,7 +1,7 @@
 pipeline {
     agent any
     
-    
+    stages
     stage('Get creds from GKE cluster') {
 	 steps {
     
@@ -9,7 +9,7 @@ pipeline {
     }
     }
     
-    stage('App Deploy') {
+    stage('pod Destroy') {
 	 steps {
 	 dir('gcr')
 			 {
@@ -23,7 +23,7 @@ pipeline {
     }
     
     
-    stage('App Deploy') {
+    stage('pod Deploy') {
 	 steps {
 	 dir('gcr')
 			 {
@@ -36,7 +36,7 @@ pipeline {
     }
     }
     
-    stage('Test App Deploy') {
+    stage('Test App') {
 	 steps {
     
         sh 'curl http://35.225.234.219:8080/health'
