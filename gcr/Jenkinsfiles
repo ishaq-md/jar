@@ -45,9 +45,9 @@ pipeline {
 		 steps {  
 			  dir('gcr')
 			 {
-        sh 'gcloud auth activate-service-account jenkins@midevlab.iam.gserviceaccount.com --key-file=terraform.json'
+        sh 'gcloud auth activate-service-account terraform@midevops.iam.gserviceaccount.com --key-file=terraform.json'
 	sh 'gcloud auth configure-docker'
-        sh 'docker push gcr.io/midevlab/javaapp2'
+        sh 'docker push gcr.io/midevops/javaapp2'
 			 }
 		 }
 	 }
@@ -63,7 +63,7 @@ pipeline {
     stage('Get creds from GKE cluster') {
 	 steps {
     
-        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project midevlab'
+        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project midevops'
     }
     }
     
@@ -80,13 +80,13 @@ pipeline {
     }
     }
     
-    stage('Test App Deploy') {
-	 steps {
+   // stage('Test App Deploy') {
+	// steps {
     
-        sh 'curl http://35.188.97.104:8080/health'
+        //sh 'curl http://35.188.97.104:8080/health'
 	
     
-    }
-    }
+   // }
+    //}
    }
 }
