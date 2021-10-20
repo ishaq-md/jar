@@ -28,7 +28,7 @@ pipeline {
 		 steps {  
 			  dir('gcr')
 			 {
-        sh 'gcloud auth activate-service-account jenkins@midevlab.iam.gserviceaccount.com --key-file=terraform.json'
+        sh 'gcloud auth activate-service-account terraform@midevops.iam.gserviceaccount.com --key-file=terraform.json'
 				 }
 		 }
 	 }
