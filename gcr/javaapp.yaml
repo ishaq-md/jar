@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-lb-service
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 35.225.234.219
+  selector:
+    app: javaapp
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javaapp
+  labels:
+    app: javaapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: javaapp
+  template:
+    metadata:
+      labels:
+        app: javaapp
+    spec:
+      containers:
+      - name: java01
+        image: gcr.io/midevops/javaapp2:latest
+        ports:
+        - containerPort: 8080
