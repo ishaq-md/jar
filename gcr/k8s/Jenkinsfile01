@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    
+    stages {
+    stage('Get creds from GKE cluster') {
+	 steps {
+    
+        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project midevops'
+    }
+    }
+    
+    
+    stage('pod Deploy') {
+	 steps {
+	 dir('gcr')
+			 {
+        /* Below command specifies exactly like the command line */
+    
+        sh 'kubectl $ACTION -f $FILE.yaml'
+	sh 'sleep 60s'
+	
+    }
+    }
+    }
+    
+    stage('Test App') {
+	 steps {
+    
+        sh 'curl http://35.225.234.219:8080/health'
+	
+    }
+    
+    }
+   }
+}
