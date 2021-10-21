@@ -16,7 +16,7 @@ pipeline {
 			 {
         /* Below command specifies exactly like the command line */
     
-        sh 'kubectl $ACTION -f $FILE.yaml'
+        sh 'kubectl $OPTION -f $FILE.yaml'
 	sh 'sleep 60s'
 	
     }
