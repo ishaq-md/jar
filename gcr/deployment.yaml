@@ -30,6 +30,6 @@ spec:
     spec:
       containers:
       - name: java01
-        image: gcr.io/midevops/javaapp2:latest
+        image: gcr.io/midevop/javaapp2:latest
         ports:
         - containerPort: 8080
