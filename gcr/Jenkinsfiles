@@ -37,7 +37,7 @@ pipeline {
 	 steps {
         /* Below command specifies exactly like the command line */
     
-        sh 'docker build -t gcr.io/midevops/javaapp2 .'
+        sh 'docker build -t gcr.io/midevop/javaapp2 .'
     }
     }
         
@@ -46,9 +46,9 @@ pipeline {
 			  dir('gcr')
 			 {
 			 sh 'pwd'
-        sh 'gcloud auth activate-service-account terraform@midevops.iam.gserviceaccount.com --key-file=terraform.json'
+        sh 'gcloud auth activate-service-account terraform@midevop.iam.gserviceaccount.com --key-file=terraform.json'
 	sh 'gcloud auth configure-docker'
-        sh 'docker push gcr.io/midevops/javaapp2'
+        sh 'docker push gcr.io/midevop/javaapp2'
 			 }
 		 }
 	 }
@@ -64,7 +64,7 @@ pipeline {
     stage('Get creds from GKE cluster') {
 	 steps {
     
-        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project midevops'
+        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project midevop'
     }
     }
     
@@ -84,7 +84,7 @@ pipeline {
     stage('Test App Deploy') {
 	 steps {
     
-        sh 'curl http://35.225.234.219:8080/health'
+        sh 'curl http://35.238.96.46:8080/health'
 	
     
     }
