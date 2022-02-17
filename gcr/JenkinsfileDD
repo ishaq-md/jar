@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+    tools
+    {
+       maven "Maven 3.6.3"
+    }
+
+    environment {
+    SVC_ACCOUNT_KEY = credentials('terraform-auth')
+  }
+     
+    stages {
+        stage ('checkout'){
+            steps {
+                git branch: 'master', url: 'https://github.com/ishaqmdgcp/jar.git'
+            }
+        }
+      
+ 
+		stage('Set creds') {
+            steps {
+              
+                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./gcr/terraform.json'
+		            sh 'pwd'
+                       
+               
+            }
+        }
+	
+    
+    stage('Get creds from GKE cluster') {
+	 steps {
+    
+        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project midevop'
+    }
+    }
+    
+    stage('App Deploy') {
+	 steps {
+	 dir('gcr')
+			 {
+        /* Below command specifies exactly like the command line */
+    
+        sh 'kubectl delete -f deployment.yaml'
+	
+    }
+    }
+    }
+    
+    
+   }
+}
