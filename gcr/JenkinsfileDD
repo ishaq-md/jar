@@ -41,7 +41,7 @@ pipeline {
 			 {
         /* Below command specifies exactly like the command line */
     
-        sh 'kubectl delete -f deployment.yaml'
+        sh 'kubectl $K8_ACTION -f deployment.yaml'
 	
     }
     }
