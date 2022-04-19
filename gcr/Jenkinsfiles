@@ -81,7 +81,7 @@ pipeline {
     }
     }
     
-    stage('Test App Deploy') {
+    stage('App health check') {
 	 steps {
     
         sh 'curl http://35.238.96.46:8080/health'
