@@ -5,7 +5,7 @@ pipeline {
     stage('Get creds from GKE cluster') {
 	 steps {
     
-        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project midevops'
+        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project mihappens'
     }
     }
     
@@ -16,7 +16,7 @@ pipeline {
         /* Below command specifies exactly like the command line */
     
         sh 'kubectl delete -f deployment.yaml'
-	sh 'sleep 60s'
+	sh 'sleep 40s'
 	
     }
     }
@@ -39,7 +39,7 @@ pipeline {
     stage('Test App') {
 	 steps {
     
-        sh 'curl http://35.225.234.219:8080/health'
+        sh 'curl http://35.238.123.73/:8080/health'
 	
     }
     
