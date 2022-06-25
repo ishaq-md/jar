@@ -1,13 +1,5 @@
 pipeline {
     agent any
-    tools
-    {
-       maven "Maven.3.6.3"
-    }
-
-    environment {
-    SVC_ACCOUNT_KEY = credentials('terraform-auth')
-  }
      
     stages {
         stage ('checkout'){
@@ -17,17 +9,6 @@ pipeline {
         }
       
  
-		stage('Set creds') {
-            steps {
-              
-                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./gcr/terraform.json'
-		            sh 'pwd'
-                       
-               
-            }
-        }
-	
-    
     stage('Get creds from GKE cluster') {
 	 steps {
     
@@ -35,7 +16,7 @@ pipeline {
     }
     }
     
-    stage('Pod Delete') {
+    stage('Pod') {
 	 steps {
 	 dir('gcr')
 			 {
