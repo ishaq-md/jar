@@ -16,7 +16,7 @@ pipeline {
 		stage('Set creds') {
             steps {
               
-                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./gcr/terraform.json'
+                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./gcr/jenkins.json'
 		            sh 'pwd'
                        
                
@@ -28,16 +28,16 @@ pipeline {
 		 steps {  
 			  dir('gcr')
 			 {
-        sh 'gcloud auth activate-service-account terraform@midevop.iam.gserviceaccount.com --key-file=terraform.json'
+        sh 'gcloud auth activate-service-account jenkins@mihappens.iam.gserviceaccount.com --key-file=jenkins.json'
 				 }
 		 }
 	 }
 	 
-	 
+
 	stage('Create GKE cluster') {
 	 steps {
     
-        sh 'gcloud container clusters delete samples-cluster --zone us-central1-a --project midevop --quiet'
+        sh 'gcloud container clusters delete samples-cluster --zone us-central1-a --project mihappens --quiet'
     }
     }
     
