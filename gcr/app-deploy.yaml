@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    environment {
+    SVC_ACCOUNT_KEY = credentials('terraform-auth')
+  }
+     
+    stages {
+        stage ('checkout'){
+            steps {
+                git branch: 'feature/mi01', url: 'https://github.com/ishaqmdgcp/jar.git'
+            }
+        }
+      
+      	stage('Set creds') {
+            steps {
+              
+                sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./gcr/jenkins.json'
+		            sh 'pwd'
+                       
+               
+            }
+        }
+	
+	 
+	 
+	 stage('Get creds from GKE cluster') {
+	 steps {
+    
+        sh 'gcloud container clusters get-credentials sample-cluster --zone us-central1-a --project mi-env-dev'
+    }
+    }
+    
+    stage('App Deploy') {
+	 steps {
+	 dir('gcr')
+			 {
+        /* Below command specifies exactly like the command line */
+    
+        sh 'kubectl $ACTION -f deployment.yaml'
+	      sh 'sleep 60s'
+	
+    }
+    }
+    }
+    
+       }
+}
