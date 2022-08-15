@@ -26,7 +26,7 @@ pipeline {
 	 steps {
         /* Below command specifies exactly like the command line */
     
-        sh 'sudo chmod 755 /var/run/docker.sock'
+        sh 'chmod 755 /var/run/docker.sock'
 	sh 'docker pull ishaqmd/petclinic'
 	sh 'docker tag ishaqmd/petclinic gcr.io/mi-env-dev/petclinic:v1' 
     }
