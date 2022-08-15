@@ -26,7 +26,7 @@ pipeline {
         
        
 	 
-	stage(Delete GKE cluster') {
+	stage('Delete GKE cluster') {
 	 steps {
     
         sh 'gcloud container clusters delete sample-cluster --zone us-central1-a --project mi-env-dev'
