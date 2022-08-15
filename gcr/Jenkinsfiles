@@ -25,7 +25,7 @@ pipeline {
             }
         }
 	
-	stage('Build image') {
+	stage('Pull image') {
 	 steps {
         /* Below command specifies exactly like the command line */
     
@@ -57,7 +57,7 @@ pipeline {
     stage('Get creds from GKE cluster') {
 	 steps {
     
-        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project mi-env-dev'
+        sh 'gcloud container clusters get-credentials sample-cluster --zone us-central1-a --project mi-env-dev'
     }
     }
     
