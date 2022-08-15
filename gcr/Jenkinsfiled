@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     environment {
     SVC_ACCOUNT_KEY = credentials('terraform-auth')
   }
@@ -8,12 +8,11 @@ pipeline {
     stages {
         stage ('checkout'){
             steps {
-                git branch: 'master', url: 'https://github.com/ishaqmdgcp/jar.git'
+                git branch: 'feature/mi01', url: 'https://github.com/ishaqmdgcp/jar.git'
             }
         }
       
-      
-		stage('Set creds') {
+      	stage('Set creds') {
             steps {
               
                 sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./gcr/jenkins.json'
@@ -23,25 +22,19 @@ pipeline {
             }
         }
 	
-	        
-        stage('Activate creds') {
-		 steps {  
-			  dir('gcr')
-			 {
-        sh 'gcloud auth activate-service-account jenkins@mihappens.iam.gserviceaccount.com --key-file=jenkins.json'
-				 }
-		 }
-	 }
+	
+        
+       
 	 
-
-	stage('Create GKE cluster') {
+	stage(Delete GKE cluster') {
 	 steps {
     
-        sh 'gcloud container clusters delete samples-cluster --zone us-central1-a --project mihappens --quiet'
+        sh 'gcloud container clusters delete sample-cluster --zone us-central1-a --project mi-env-dev'
     }
     }
     
-       
+        
     
-   }
+    
+       }
 }
