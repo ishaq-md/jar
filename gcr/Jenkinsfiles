@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage ('checkout'){
             steps {
-                git branch: 'master', url: 'https://github.com/ishaqmdgcp/jar.git'
+                git branch: 'feature/mi01', url: 'https://github.com/ishaqmdgcp/jar.git'
             }
         }
       
