@@ -30,6 +30,6 @@ spec:
     spec:
       containers:
       - name: petclinic
-        image: gcr.io/mi-env-dev/petclinic
+        image: gcr.io/mi-env-dev/petclinic:latest
         ports:
         - containerPort: 8080
