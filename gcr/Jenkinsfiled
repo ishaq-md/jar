@@ -40,8 +40,9 @@ pipeline {
         sh 'gcloud container clusters delete samples-cluster --zone us-central1-a --project mihappens --quiet'
     }
     }
-    
-    post{
+       
+   }
+   post{
         failure{
             emailext to: "miinstitutes@gmail.com",
             subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
@@ -50,6 +51,4 @@ pipeline {
         }
     }
        
-    
-   }
 }
