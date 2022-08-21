@@ -38,7 +38,6 @@ pipeline {
         /* Below command specifies exactly like the command line */
     
         sh 'kubectl $ACTION -f deployment.yaml'
-	      sh 'sleep 60s'
 	
     }
     }
