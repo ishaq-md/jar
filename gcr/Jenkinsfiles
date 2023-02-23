@@ -2,21 +2,21 @@ pipeline {
     agent any
     tools
     {
-       maven "Maven 3.6.2"
+       maven "Maven"
     }
 
     environment {
-    SVC_ACCOUNT_KEY = credentials('terraform-auth')
+    SVC_ACCOUNT_KEY = credentials('dev-auth')
   }
      
     stages {
-        stage ('checkout'){
+        stage ('git checkout'){
             steps {
                 git branch: 'master', url: 'https://github.com/ishaqmdgcp/jar.git'
             }
         }
       
-      stage('Execute Maven') {
+      stage('Maven Build') {
            steps {
              
                 sh 'mvn clean install'           
@@ -37,7 +37,7 @@ pipeline {
 	 steps {
         /* Below command specifies exactly like the command line */
     
-        sh 'docker build -t gcr.io/mihappens/javaapp2 .'
+        sh 'docker build -t gcr.io/mi-dev-env/javaapp2 .'
     }
     }
         
@@ -46,9 +46,9 @@ pipeline {
 			  dir('gcr')
 			 {
 			 sh 'pwd'
-        sh 'gcloud auth activate-service-account jenkins@mihappens.iam.gserviceaccount.com --key-file=jenkins.json'
-	sh 'gcloud auth configure-docker'
-        sh 'docker push gcr.io/mihappens/javaapp2'
+        sh 'gcloud auth activate-service-account jenkins@mi-dev-env.iam.gserviceaccount.com --key-file=jenkins.json'
+	    sh 'gcloud auth configure-docker'
+        sh 'docker push gcr.io/mi-dev-env/javaapp2'
 			 }
 		 }
 	 }
@@ -57,14 +57,14 @@ pipeline {
 	stage('Create GKE cluster') {
 	 steps {
     
-        sh 'gcloud container clusters create samples-cluster --zone us-central1-a --num-nodes=1 --project mihappens'
+        sh 'gcloud container clusters create samples-cluster --zone us-central1-a --num-nodes=1 --project mi-dev-env'
     }
     }
     
     stage('Get creds from GKE cluster') {
 	 steps {
     
-        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project mihappens'
+        sh 'gcloud container clusters get-credentials samples-cluster --zone us-central1-a --project mi-dev-env'
     }
     }
     
@@ -84,7 +84,7 @@ pipeline {
     stage('App health check') {
 	 steps {
     
-        sh 'curl http://35.238.123.73:8080/health'
+        sh 'curl http://34.171.69.164:8080/health'
 	
     
     }
